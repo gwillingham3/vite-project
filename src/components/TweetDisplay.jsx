@@ -20,7 +20,7 @@ function TweetDisplay({selector, queryTerm}) {
 
 	const getTweets = async () => {
 		if (selector !== "blank") {
-			const searchStuff = "&" + selector + "=" + queryTerm;
+			const searchStuff = "&q=" + selector + ":" + queryTerm;
 			const url = "https://api.pokemontcg.io/v2/cards?pageSize=6" + searchStuff;
 			console.log(url);
 			
