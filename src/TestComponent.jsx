@@ -11,8 +11,8 @@ function TestComponent() {
 		<>
 			<div className="aClass">
 				<h1>What's your name?</h1>
-				<div className="inputHolder">
-					<label>Type your name here: </label>
+				<div className="input-holder">
+					<label className="input-label">Type your name here: </label>
 					<input type="text" id="name" onKeyUp={() => updateName()}/>
 				</div>
 				

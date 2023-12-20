@@ -1,4 +1,6 @@
 /**
+	props = { selector: string, queryTerm: string }
+	
 	TODO: Change name to search generally because I'm going to keep switching around free apis
  */
 
@@ -19,7 +21,7 @@ function TweetDisplay({selector, queryTerm}) {
 	const getTweets = async () => {
 		if (selector !== "blank") {
 			const searchStuff = "&" + selector + "=" + queryTerm;
-			const url = "https://api.pokemontcg.io/v2/cards?pageSize=5" + searchStuff;
+			const url = "https://api.pokemontcg.io/v2/cards?pageSize=6" + searchStuff;
 			console.log(url);
 			
 			try {
@@ -38,14 +40,36 @@ function TweetDisplay({selector, queryTerm}) {
 	
 	return (
 		<>
-			<button onClick={ () => getTweets() }>Get Results</button>
-			{res && (
-				<ul className="list-group">
-					{res.data.map((item) => (
-						<li key={item.id} className="list-group-item">{item.name}</li>
-					))}
-				</ul>
-			)}
+			<div className="row">
+				<div className="col-md-8">
+					<button onClick={ () => getTweets() }>Get Results</button>
+				</div>
+				<div className="col-md-4">
+					<p>Filler text</p>
+				</div>
+				{res && (
+					<div className="row">
+						{res.data.map((item) => (
+							<div key={item.id} className="col-lg-4 col-md-6 col-12 mt-4 pt-2">
+								<div className="result-card border-0 bg-light rounded shadow">
+									<div className="card-body p-4">
+										<span className="badge rounded-pill bg-primary float-md-end mb-3">{item.supertype}</span>
+										<img src={item.images.small} className="rounded float-start" alt="Image of Pokemon card"/>
+										<h5>{item.name}</h5>
+										<div className="mt-3">
+											<span className="text-muted d-block"><i className="fa fa-solid fa-t" aria-hidden="true"></i>{item.types[0]}</span>
+											<span className="text-muted d-block"><i className="fa fa-solid fa-heart" aria-hidden="true"></i>{item.hp}</span>
+										</div>
+										<div className="mt-3">
+											<a href={item.tcgplayer.url} className="btn btn-primary">View Details</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						))}
+					</div>
+				)}
+			</div>
 		</>
 	);
 }

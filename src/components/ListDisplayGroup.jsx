@@ -1,4 +1,4 @@
-// props = { items: [], heading: string }
+// props = { items: [], heading: string, type: string }
 // TODO: Change name to AccordionDisplayGroup
 
 import { useState } from 'react';
@@ -41,8 +41,17 @@ function ListDisplayGroup({items, heading, type}) {
 								data-bs-parent="#accordionDisplay"
 							>
 								<div className="accordion-body">
-									<p>Here are 5 cards with that criteria</p>
-									<TweetDisplay selector={type} queryTerm={item} />
+									<div className="container mt-5 pt-4">
+										<div className="row align-items-end mb-4 pb-2">
+											<div className="col-md-8">
+												<p>Here are 5 cards with that criteria</p>
+											</div>
+											<div className="col-md-4 mt-4 mt-sm-0 d-none d-md-block">
+												<p>Filler text</p>
+											</div>
+										</div>
+										<TweetDisplay selector={type} queryTerm={item} />
+									</div>
 								</div>
 							</div>
 						</div>
